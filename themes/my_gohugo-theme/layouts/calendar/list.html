@@ -1,0 +1,5 @@
+{{- $.Scratch.Add "index" slice -}}
+  {{- range where .Site.RegularPages "Section" "events" -}}
+  {{- $.Scratch.Add "index" (dict "title" .Title "start" .Params.when "allDay" true "url" .Permalink) -}}
+  {{- end -}}
+  {{- $.Scratch.Get "index" | jsonify -}}

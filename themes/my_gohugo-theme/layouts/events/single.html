@@ -1,0 +1,24 @@
+{{ define "content" }}
+<main class="col" style="color: white">
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Simple</title>
+</head>
+
+<body>
+    <h1>{{ .Title }}</h1>
+    {{ .Params.adress }}
+    {{ .Params.postalCode }}
+    {{ .Params.city }}
+    {{ .Params.label }}
+    {{ now.Format "02/01/2006" }}
+    {{ .Params.description }}
+    <img src="{{ .Params.photo }}" style="width: 20rem; height: 20rem">
+    <a href="/associations/{{.Params.association}}" style="color: white"> {{ .Params.association }}</a>
+</body>
+
+</html>
+</main>
+{{ end }}

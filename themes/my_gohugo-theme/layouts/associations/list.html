@@ -1,0 +1,24 @@
+{{ define "content" }}
+<main class="col">
+<h1 style="color: white">Imporant</h1>
+<div>{{ range where .Site.RegularPages "Type" "associations" }}
+    {{ if eq .Params.important true }}
+    <a href="{{ .Permalink }}" class="" style="color: white">
+        {{ .Params.Title }}
+        {{ .Params.domain }}<br>
+    </a>
+    {{ end }}
+    {{ end }}
+</div>
+<h1 style="color: white">Pas Imporant</h1>
+<div>{{ range where .Site.RegularPages "Type" "associations" }}
+    {{ if eq .Params.important false }}
+    <a href="{{ .Permalink }}" class="" style="color: white">
+        {{ .Params.Title }}
+        {{ .Params.domain }}<br>
+    </a>
+    {{ end }}
+    {{ end }}
+</div>
+</main>
+{{ end }}

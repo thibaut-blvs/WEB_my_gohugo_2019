@@ -1,0 +1,29 @@
+{{ define "content" }}
+<main class="col">
+<h1 style="color: white">Evénements archivés</h1>
+{{ range where .Site.RegularPages "Type" "events" }}
+{{ $when:= .Params.when }}
+{{ $when:= time $when }}
+{{ if $when.Before now }}
+<a href="{{ .Permalink }}" class="" style="color: white">
+    {{ .Params.Title }}<br>
+    {{ $when.Format "02/01/2006" }}<br>
+    {{ .Params.label }}<br><br>
+</a>
+{{ end }}
+{{ end }}
+
+<h1 style="color: white">Evénements à venir</h1>
+{{ range where .Site.RegularPages "Type" "events" }}
+{{ $when:= .Params.when }}
+{{ $when:= time $when }}
+{{ if $when.After now }}
+<a href="{{ .Permalink }}" class="" style="color: white">
+    {{ .Params.Title }}<br>
+    {{ $when.Format "02/01/2006" }}<br>
+    {{ .Params.label }}<br><br>
+</a>
+{{ end }}
+{{ end }}
+</main>
+{{ end }}

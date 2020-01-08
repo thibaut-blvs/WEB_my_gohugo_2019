@@ -1,0 +1,4 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "Mairie Thibaut"
+theme = "my_gohugo-theme"

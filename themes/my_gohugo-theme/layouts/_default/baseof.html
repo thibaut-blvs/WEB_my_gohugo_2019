@@ -1,0 +1,90 @@
+{{ partial "head" . }}
+
+<body class="has-navbar-fixed-top">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #212529">
+            <a href="/" class="navbar-brand" style="color: white; margin-right: 30px">Mairie
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ .Site.BaseURL }}" style="color: white">Accueil
+                            <span class="sr-only">(current)
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ .Site.BaseURL }}/conseil-municipal" style="color: white">Conseil
+                            Municipal
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ .Site.BaseURL }}/associations" style="color: white">Associations
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{{ .Site.BaseURL }}/events" style="color: white"
+                            id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Evénements
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                            style="background-color: #424242">
+                            <a class="dropdown-item" href="{{ .Site.BaseURL }}/events" style="color: white">Tous les
+                                événements
+                            </a>
+                            <a class="dropdown-item" href="{{ .Site.BaseURL }}/upcoming_events"
+                                style="color: white">Evénement à venir
+                            </a>
+                            <a class="dropdown-item" href="{{ .Site.BaseURL }}/archived_events"
+                                style="color: white">Evénements archivés
+                            </a>
+                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ .Site.BaseURL }}/calendrier" style="color: white">Calendrier
+                        </a>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <aside class="col-12 col-md-2 p-0 bg-dark">
+                    <nav class="navbar navbar-expand navbar-dark bg-dark flex-md-column flex-row align-items-start">
+                        <div class="collapse navbar-collapse">
+                            <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between"
+                                style="padding-top: 20px">
+                                <input class="form-control" type="text" placeholder="Que recherchez-vous ?"
+                                    aria-label="search">
+                                <br>
+                                <br>
+                                <span style="color: white; font-size: 32px; text-align: center">Associations Importantes
+                                    :</span>
+                                <br>
+                                <div style="color: white; font-size: 20px">
+                                    {{ range where .Site.RegularPages "Type" "associations" }}
+                                    {{ if eq .Params.important true }} -
+                                    {{ .Params.Title }}
+                                    <a href="{{ .Permalink }}" class="" style="font-size: 13px; padding-left: 10px">
+                                        Voir plus...<br>
+                                    </a>
+                                    {{ end }}
+                                    {{ end }}
+                                </div>
+                            </ul>
+                        </div>
+                    </nav>
+                </aside>
+                {{ block "content" . }}
+                {{ end }}
+            </div>
+        </div>
+    </div>
+
+    {{ partial "footer" . }}

@@ -1,0 +1,51 @@
+{{ define "content" }}
+
+<main class="col">
+  <div class="tree" style="">
+    <ul>
+      <li
+        style="color: white;margin-left: 165px; background-color:rgb(66, 66, 66, 0.8);width: 80%;border: 1px solid #424242;border-radius: 10px; color:white; text-align: center; margin-top: 7px;margin-bottom: 9px">
+        <h1 style="color: white; font-size: 50px">Conseil Municipal</h1>
+        <span style="padding-right: 4%; font-size: 32px">Maire</span>
+        {{ range where .Site.RegularPages "Type" "conseil-municipal" }}
+        {{ if eq .Params.role "Maire" }}
+        <a href="{{ .Permalink }}" class="">
+          {{ .Params.lastName }}
+          {{ .Params.firstNames }}
+          <img src="{{ .Params.photo }}" style="width: 14rem; height: 14rem">
+          {{ end }}
+          {{ end }}
+        </a>
+        <ul>
+          <li>
+            <span style="padding-right: 4%; font-size: 29px">Adjoints</span>
+            {{ range where .Site.RegularPages "Type" "conseil-municipal" }}
+            {{ if eq .Params.role "Adjoint" }}
+            <a href="{{ .Permalink }}" class="">
+              {{ .Params.lastName }}
+              {{ .Params.firstNames }}
+              <img src="{{ .Params.photo }}" style="width: 10rem; height: 10rem">
+              {{ end }}
+              {{ end }}
+            </a>
+            <ul>
+              <li>
+                <span style="padding-right: 4%; font-size: 26px">Conseillers Municipaux</span>
+                {{ range where .Site.RegularPages "Type" "conseil-municipal" }}
+                {{ if eq .Params.role "Conseiller Municipal" }}
+                <a href="{{ .Permalink }}" class="">
+                  {{ .Params.lastName }}
+                  {{ .Params.firstNames }}
+                  <img src="{{ .Params.photo }}" style="width: 6rem; height: 6rem">
+                  {{ end }}
+                  {{ end }}
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</main>
+{{ end }}

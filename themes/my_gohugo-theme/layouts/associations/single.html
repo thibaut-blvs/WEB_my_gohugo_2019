@@ -1,0 +1,20 @@
+{{ define "content" }}
+<main class="col" style="color: white">
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Simple</title>
+</head>
+
+<body>
+    <h1>{{ .Title }}</h1>
+    {{ .Params.domain }}
+    {{ .Params.address }}
+    {{ .Params.description }}
+    <img src="{{ .Params.photo }}" style="width: 20rem; height: 20rem">
+</body>
+
+</html>
+</main>
+{{ end }}

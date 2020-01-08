@@ -1,0 +1,29 @@
+{{ define "content" }}
+<main class="col" style="">
+    <div
+        style="color: white; background-color: rgb(66, 66, 66, 0.5);border: 1px solid #424242; padding-top: 60px; margin: 0 auto; border-radius: 10px; font-size: 60px; font-weight: bold; height: 320px; width: 1000px; text-align: center">
+        La ville d'Evian de vous souhaite la bienvenue !</div>
+
+
+<h1 style="color: white; padding-top: 140px">Evénements à venir</h1>
+<img src="/images/down.png" style="width: 5rem; height: 5rem">
+<br><br>
+<div style="background-color:rgb(52, 58, 64)">
+{{ range first 10 (where (.Site.RegularPages.ByParam "when") "Section" "events") }}
+{{ if .Title }}
+{{ $when:= .Params.when }}
+{{ $when:= time $when }}
+{{ if $when.After now }}
+<a href="{{ .Permalink }}" class="" style="color: white">
+    {{ .Params.Title }}<br>
+    {{ .Params.label }}<br>
+    {{ $when.Format "02/01/2006" }}<br>
+    <img src="{{ .Params.photo }}" style="width: 5rem; height: 5rem"><br><br>
+</a>
+
+{{ end }}
+{{ end }}
+{{ end }}
+</div>
+
+{{ end }}
